@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>EngFit 단어 테스트 · Lesson 4</title>
+<title>EngFit 단어 테스트 · Lesson 4 (영영풀이)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -90,42 +90,32 @@
   }
   .btn-primary:active{background:var(--blue-d);}
   #start .startwrap{width:100%;margin-top:20px;}
-  .kbdhint{margin-top:10px;font-size:.8em;color:var(--sub);}
+  .kbdhint{margin-top:10px;font-size:.8em;color:var(--sub);line-height:1.6;}
   .kbdhint b{color:var(--blue-l);}
 
   /* QUIZ */
   #quiz{padding-top:18px;}
   .qtop{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
   .count{font-size:.92em;color:var(--sub);font-weight:700;}
-  .bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:24px;}
+  .bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:22px;}
   .bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue-l),#7e9bc8);border-radius:99px;transition:width .3s;}
   .prompt{
-    flex:0 0 auto;min-height:120px;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;text-align:center;gap:8px;margin-bottom:22px;
+    flex:0 0 auto;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;gap:10px;margin-bottom:20px;
   }
   .qtag{font-size:.82em;font-weight:700;color:var(--blue-l);background:rgba(74,106,160,.12);padding:5px 12px;border-radius:99px;}
-  .qword-en{font-family:'Patrick Hand',cursive;font-size:2.6em;line-height:1.1;color:var(--blue);}
-  .qword-ko{font-family:'Noto Sans KR',sans-serif;font-size:1.65em;font-weight:700;line-height:1.3;color:var(--blue);}
-  .choices{display:flex;flex-direction:column;gap:11px;margin-top:auto;}
-  .choice{
-    width:100%;text-align:center;background:#fff;border:2px solid var(--line);
-    border-radius:16px;padding:15px 14px;cursor:pointer;color:var(--ink);
-    transition:border-color .15s, background .15s, transform .08s;
+  /* 영영풀이 카드 */
+  .qword-def{
+    font-family:'Patrick Hand',cursive;font-size:1.32em;line-height:1.5;color:var(--blue);
+    background:#fff;border:2px dashed rgba(74,106,160,.45);border-radius:16px;
+    padding:16px 16px;width:100%;
+    box-shadow:inset 0 0 18px rgba(74,106,160,.05);
   }
-  .choice:active{transform:scale(.98);}
-  .choice.ko{font-family:'Noto Sans KR',sans-serif;font-size:0.96em;font-weight:500;}
-  .choice.en{font-family:'Patrick Hand',cursive;font-size:1.44em;}
-  .choice.correct{border-color:var(--green);background:var(--green-bg);color:var(--green);font-weight:700;}
-  .choice.wrong{border-color:var(--red);background:var(--red-bg);color:var(--red);}
-  .choice.lock{pointer-events:none;}
-  .choice .num{
-    display:inline-flex;align-items:center;justify-content:center;
-    width:22px;height:22px;border-radius:7px;margin-right:9px;
-    background:rgba(63,92,140,.08);color:var(--sub);
-    font-family:'Noto Sans KR',sans-serif;font-size:.72rem;font-weight:700;vertical-align:middle;
+  .qword-def .lead{
+    display:block;font-family:'Noto Sans KR',sans-serif;font-size:.62em;font-weight:700;
+    color:var(--blue-l);letter-spacing:1px;margin-bottom:7px;opacity:.85;
   }
-  .choice.correct .num{background:rgba(79,125,78,.15);color:var(--green);}
-  .choice.wrong .num{background:rgba(192,86,75,.15);color:var(--red);}
+  .choices{display:none;}
 
   /* 주관식 */
   .typebox{display:flex;flex-direction:column;gap:11px;margin-top:auto;}
@@ -142,7 +132,16 @@
     text-align:center;font-size:1em;color:var(--green);font-weight:700;display:none;
   }
   .typeanswer .eng{font-size:1.35em;}
-  .typehint{text-align:center;font-size:.8em;color:var(--sub);}
+  .typeanswer .ko{font-size:.86em;color:var(--sub);font-weight:600;}
+  .typerow{display:flex;gap:10px;}
+  .typerow .btn-primary{flex:1;}
+  .hintbtn{
+    background:#eef2f8;color:var(--blue-l);font-size:.92em;padding:0 16px;
+    border:1.5px solid rgba(74,106,160,.30);white-space:nowrap;
+  }
+  .hintbtn:active{background:#e1e8f3;}
+  .typehint{text-align:center;font-size:.8em;color:var(--sub);min-height:1.1em;}
+  .typehint b{color:var(--blue-l);font-family:'Patrick Hand',cursive;font-size:1.25em;letter-spacing:2px;}
 
   /* RESULT */
   #result{padding-top:20px;}
@@ -156,10 +155,11 @@
   .reviewhead .ok{color:var(--green);font-size:.92em;}
   .review{display:flex;flex-direction:column;gap:9px;max-height:240px;overflow-y:auto;padding:2px;}
   .ritem{border:1.5px solid var(--red-bg);background:#fff;border-radius:14px;padding:11px 13px;border-left:5px solid var(--red);}
-  .ritem .q{font-size:.8em;color:var(--sub);font-weight:600;margin-bottom:3px;}
+  .ritem .q{font-size:.82em;color:var(--sub);font-weight:500;margin-bottom:5px;line-height:1.4;}
   .ritem .ans{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;font-size:.95em;}
   .ritem .yours{color:var(--red);} .ritem .yours s{opacity:.8;}
   .ritem .right{color:var(--green);font-weight:700;}
+  .ritem .right .ko{color:var(--sub);font-weight:600;font-size:.9em;}
   .ritem b.eng{font-family:'Patrick Hand',cursive;font-size:1.2em;font-weight:400;color:var(--blue);}
   .allright{text-align:center;color:var(--green);font-weight:700;padding:18px;background:var(--green-bg);border-radius:14px;}
   .actions{margin-top:16px;display:flex;flex-direction:column;gap:10px;}
@@ -204,8 +204,8 @@
     <h1>단어 테스트</h1>
     <div class="unit eng">Lesson 4</div>
     <div class="meta">문성중 2학년 한승주 · 전체 24문항 랜덤</div>
-    <div class="meta">영어↔한글 혼합 + 주관식(영어 쓰기) 출제</div>
-    <div class="kbdhint">💻 키보드 <b>1~4</b>로 보기 선택 · 주관식은 <b>Enter</b>로 제출</div>
+    <div class="meta">📖 영영풀이를 읽고 → 영어 단어 쓰기</div>
+    <div class="kbdhint">영영풀이(영어 뜻)를 읽고 <b>영어 단어</b>를 입력하세요<br>⏎ <b>Enter</b>로 제출 · 막히면 <b>💡힌트</b> · 대소문자 무시</div>
     <div class="startwrap">
       <button class="btn btn-primary" onclick="startQuiz()">시작하기</button>
     </div>
@@ -230,15 +230,18 @@
     </div>
     <div class="bar"><i id="prog"></i></div>
     <div class="prompt">
-      <span class="qtag" id="qtag">뜻 고르기</span>
-      <div id="promptword"></div>
+      <span class="qtag">영영풀이 → 영어로 쓰기 ⏎</span>
+      <div class="qword-def" id="promptword"><span class="lead">DEFINITION</span><span id="defText"></span></div>
     </div>
     <div class="choices" id="choices"></div>
-    <div class="typebox" id="typebox" style="display:none">
-      <input type="text" id="typeinput" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="영어로 입력하세요">
+    <div class="typebox" id="typebox">
+      <input type="text" id="typeinput" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="영어 단어를 입력하세요">
       <div class="typeanswer" id="typeanswer"></div>
-      <button class="btn btn-primary" id="typebtn" onclick="submitTyping()">제출 (Enter ⏎)</button>
-      <div class="typehint">대소문자는 구분하지 않아요</div>
+      <div class="typerow">
+        <button class="btn btn-primary" id="typebtn" onclick="submitTyping()">제출 (Enter ⏎)</button>
+        <button class="btn hintbtn" id="hintbtn" type="button" onclick="showHint()">💡 힌트</button>
+      </div>
+      <div class="typehint" id="typehint">대소문자는 구분하지 않아요</div>
     </div>
   </section>
 
@@ -274,61 +277,42 @@
 </div>
 
 <script>
-/* ===== 단어 데이터: Lesson 4 · 문성중 2학년 한승주 (24) ===== */
+/* ===== 단어 데이터: Lesson 4 · 문성중 2학년 한승주 (24) · 영영풀이 포함 ===== */
 const WORDS = [
-  {en:"net", ko:"그물"},
-  {en:"expect", ko:"예상하다"},
-  {en:"magazine", ko:"잡지"},
-  {en:"stripe", ko:"줄무늬"},
-  {en:"research", ko:"연구"},
-  {en:"ocean", ko:"바다"},
-  {en:"leaf", ko:"잎"},
-  {en:"weigh", ko:"무게가 ~이다"},
-  {en:"drone", ko:"드론"},
-  {en:"stomach", ko:"배, 위"},
-  {en:"fur", ko:"(동물의) 부드러운 털"},
-  {en:"length", ko:"길이"},
-  {en:"complex", ko:"복잡한"},
-  {en:"tag", ko:"꼬리표; 꼬리표를 달다"},
-  {en:"give birth", ko:"낳다, 출산하다"},
-  {en:"splash", ko:"물보라"},
-  {en:"underwater", ko:"물속에서"},
-  {en:"giraffe", ko:"기린"},
-  {en:"tongue", ko:"혀"},
-  {en:"whale", ko:"고래"},
-  {en:"particularly", ko:"특히"},
-  {en:"all of a sudden", ko:"갑자기"},
-  {en:"pattern", ko:"무늬, 문양"},
-  {en:"record", ko:"기록하다, 녹음하다"}
+  {en:"net", ko:"그물", def:"something used for catching fish, insects, or animals which is made of threads or wires"},
+  {en:"expect", ko:"예상하다", def:"to think that something will probably or certainly happen"},
+  {en:"magazine", ko:"잡지", def:"a type of thin book with a paper cover that contains stories, essays, pictures, etc., and that is usually published every week or month"},
+  {en:"stripe", ko:"줄무늬", def:"a line of color, especially one of several lines of color all close together"},
+  {en:"research", ko:"연구", def:"serious study of a subject, in order to discover new facts or test new ideas"},
+  {en:"ocean", ko:"바다", def:"the salt water that covers much of the earth's surface"},
+  {en:"leaf", ko:"잎", def:"a flat green part of a plant, growing from a stem or branch"},
+  {en:"weigh", ko:"무게가 ~이다", def:"to have a particular weight"},
+  {en:"drone", ko:"드론", def:"a type of small aircraft that flies without a pilot"},
+  {en:"stomach", ko:"배, 위", def:"the organ in your body where food goes and begins to be digested after you swallow it"},
+  {en:"fur", ko:"(동물의) 부드러운 털", def:"the thick soft hair that covers the bodies of some animals"},
+  {en:"length", ko:"길이", def:"the measurement of how long something is from one end to the other"},
+  {en:"complex", ko:"복잡한", def:"not easy to understand or explain, not simple"},
+  {en:"tag", ko:"꼬리표; 꼬리표를 달다", def:"a piece of equipment that you attach to an animal or person so that you know where they are; to attach a tag to something"},
+  {en:"give birth", ko:"낳다, 출산하다", def:"to produce a baby from the body"},
+  {en:"splash", ko:"물보라", def:"the movement of liquid when something hits it"},
+  {en:"underwater", ko:"물속에서", def:"beneath the surface of water"},
+  {en:"giraffe", ko:"기린", def:"a very tall African animal that has an extremely long neck and legs"},
+  {en:"tongue", ko:"혀", def:"the soft thing inside your mouth that you move and use for tasting and speaking"},
+  {en:"whale", ko:"고래", def:"a very large animal that lives in the sea and looks like a fish, but is actually a mammal"},
+  {en:"particularly", ko:"특히", def:"more than usual or more than others"},
+  {en:"all of a sudden", ko:"갑자기", def:"quickly and unexpectedly"},
+  {en:"pattern", ko:"무늬, 문양", def:"a repeated form or design especially that is used to decorate something"},
+  {en:"record", ko:"기록하다, 녹음하다", def:"to write information down or store it in a computer so that it can be looked at in the future; to store music, sound, etc. on something so that you can listen to them again"}
 ];
 
-let queue=[], idx=0, score=0, wrongs=[], locked=false;
+let queue=[], idx=0, score=0, wrongs=[], locked=false, hinted=false;
 
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');}
 
-function buildQuestion(word){
-  // 주관식: 한글 뜻 → 영어 입력 (특수문자 ~ / . / ? 포함 표현은 객관식만)
-  const canType = !/[.?…~]/.test(word.en);
-  if(canType && Math.random()<0.35){
-    return {word, type:'typing'};
-  }
-  // 객관식 방향 랜덤: en2ko = 영어 제시→한글 보기 / ko2en = 한글 제시→영어 보기
-  const dir = Math.random()<0.5 ? 'en2ko' : 'ko2en';
-  const key = dir==='en2ko' ? 'ko' : 'en';
-  // 같은 뜻(동의어) 단어는 보기에서 제외해 복수 정답 방지
-  const distractPool = shuffle(WORDS.filter(w=>w.en!==word.en && w.ko!==word.ko));
-  const opts=[word];
-  for(const w of distractPool){
-    if(opts.length>=4) break;
-    if(opts.some(o=>o[key]===w[key])) continue; // 중복 보기 방지
-    opts.push(w);
-  }
-  return {word, type:'mc', dir, key, options:shuffle(opts)};
-}
-
 function startQuiz(){
-  queue = shuffle(WORDS).map(buildQuestion);
+  // 전체 단어를 랜덤 순서로, 모두 영영풀이 → 영어 주관식
+  queue = shuffle(WORDS).map(word=>({word, type:'def'}));
   idx=0; score=0; wrongs=[];
   document.getElementById('total').textContent=queue.length;
   show('quiz');
@@ -336,80 +320,36 @@ function startQuiz(){
 }
 
 function render(){
-  locked=false;
+  locked=false; hinted=false;
   const q=queue[idx];
   document.getElementById('cur').textContent=idx+1;
   document.getElementById('prog').style.width=((idx)/queue.length*100)+'%';
 
-  const pw=document.getElementById('promptword');
-  const tag=document.getElementById('qtag');
-  const box=document.getElementById('choices');
-  const tbox=document.getElementById('typebox');
+  document.getElementById('defText').textContent=q.word.def;
 
-  if(q.type==='typing'){
-    tag.textContent='영어로 쓰기 ⏎';
-    pw.className='qword-ko';
-    pw.textContent=q.word.ko;
-    box.style.display='none';
-    tbox.style.display='flex';
-    const inp=document.getElementById('typeinput');
-    inp.value=''; inp.className=''; inp.disabled=false;
-    document.getElementById('typeanswer').style.display='none';
-    inp.focus();
-    return;
-  }
-
-  tbox.style.display='none';
-  box.style.display='flex';
-  if(q.dir==='en2ko'){
-    tag.textContent='뜻 고르기';
-    pw.className='qword-en eng';
-    pw.textContent=q.word.en;
-  }else{
-    tag.textContent='단어 고르기';
-    pw.className='qword-ko';
-    pw.textContent=q.word.ko;
-  }
-
-  box.innerHTML='';
-  q.options.forEach((opt,i)=>{
-    const b=document.createElement('button');
-    const isEn = q.key==='en';
-    b.className='choice '+(isEn?'en eng':'ko');
-    b.dataset.val=opt[q.key];
-    const num=document.createElement('span');
-    num.className='num'; num.textContent=i+1;
-    b.appendChild(num);
-    b.appendChild(document.createTextNode(opt[q.key]));
-    b.onclick=()=>choose(b,opt,q);
-    box.appendChild(b);
-  });
+  const inp=document.getElementById('typeinput');
+  inp.value=''; inp.className=''; inp.disabled=false;
+  document.getElementById('typeanswer').style.display='none';
+  document.getElementById('typehint').innerHTML='대소문자는 구분하지 않아요';
+  document.getElementById('hintbtn').disabled=false;
+  inp.focus();
 }
 
-function choose(btn,opt,q){
-  if(locked) return;
-  locked=true;
-  const correct = opt.en===q.word.en;
-  const buttons=[...document.getElementById('choices').children];
-  buttons.forEach(b=>b.classList.add('lock'));
-
-  if(correct){
-    btn.classList.add('correct');
-    score++;
-    setTimeout(next,250); // 정답 → 0.25초 후 넘어가기
-  }else{
-    btn.classList.add('wrong');
-    buttons.forEach(b=>{ if(b.dataset.val===q.word[q.key]) b.classList.add('correct'); });
-    wrongs.push({
-      dir:q.dir,
-      en:q.word.en, ko:q.word.ko,
-      chosen: opt[q.key], correct:q.word[q.key], key:q.key
-    });
-    setTimeout(next,900); // 오답 → 잠시 보여주고 넘어가기
-  }
+/* ===== 첫 글자 힌트 ===== */
+function showHint(){
+  const q=queue[idx];
+  if(!q || locked) return;
+  hinted=true;
+  const en=q.word.en;
+  const letters=en.replace(/[^A-Za-z]/g,'').length;
+  const words=en.trim().split(/\s+/).length;
+  const extra = words>1 ? (' · '+words+'단어') : '';
+  document.getElementById('typehint').innerHTML='힌트: 첫 글자 <b>'+en[0].toUpperCase()+'</b> · 알파벳 '+letters+'글자'+extra;
+  document.getElementById('hintbtn').disabled=true;
+  document.getElementById('typeinput').focus();
 }
 
-/* ===== 주관식 채점 (대소문자 구분 없음, 동의어 모두 정답 인정) ===== */
+/* ===== 주관식 채점 (대소문자 구분 없음) ===== */
 function norm(s){
   return s.toLowerCase()
     .replace(/[’‘`]/g,"'")
@@ -419,13 +359,15 @@ function norm(s){
 function submitTyping(){
   if(locked) return;
   const q=queue[idx];
-  if(!q || q.type!=='typing') return;
+  if(!q) return;
   const inp=document.getElementById('typeinput');
   const val=inp.value;
   if(norm(val)==='') { inp.focus(); return; } // 빈 입력은 제출 안 됨
   locked=true;
   inp.disabled=true;
-  const accepted = WORDS.filter(w=>w.ko===q.word.ko).map(w=>norm(w.en));
+  document.getElementById('hintbtn').disabled=true;
+  // 같은 영영풀이를 갖는 단어 모두 정답 인정(여기선 1:1)
+  const accepted = WORDS.filter(w=>w.def===q.word.def).map(w=>norm(w.en));
   const correct = accepted.indexOf(norm(val))>=0;
   if(correct){
     inp.classList.add('correct');
@@ -434,29 +376,18 @@ function submitTyping(){
   }else{
     inp.classList.add('wrong');
     const ans=document.getElementById('typeanswer');
-    ans.innerHTML='정답: <b class="eng">'+q.word.en+'</b>';
+    ans.innerHTML='정답: <b class="eng">'+q.word.en+'</b> <span class="ko">('+q.word.ko+')</span>';
     ans.style.display='block';
-    wrongs.push({
-      dir:'typing',
-      en:q.word.en, ko:q.word.ko,
-      chosen: val.trim(), correct:q.word.en, key:'en'
-    });
-    setTimeout(next,1500); // 오답 → 정답 보여주고 넘어가기
+    wrongs.push({def:q.word.def, en:q.word.en, ko:q.word.ko, chosen:val.trim()});
+    setTimeout(next,1700); // 오답 → 정답 보여주고 넘어가기
   }
 }
 
-/* ===== 키보드 조작: 1~4 보기 선택 / Enter 주관식 제출 ===== */
+/* ===== 키보드: Enter 제출 ===== */
 document.addEventListener('keydown',function(e){
   if(!document.getElementById('quiz').classList.contains('on')) return;
-  const q=queue[idx];
-  if(!q || locked) return;
-  if(q.type==='mc'){
-    const n={'1':0,'2':1,'3':2,'4':3}[e.key];
-    if(n!==undefined){
-      const b=document.getElementById('choices').children[n];
-      if(b){ e.preventDefault(); b.click(); }
-    }
-  }else if(q.type==='typing' && e.key==='Enter'){
+  if(locked) return;
+  if(e.key==='Enter'){
     e.preventDefault();
     submitTyping();
   }
@@ -489,13 +420,12 @@ function finish(){
     title.textContent='오답 확인 ('+wrongs.length+')';
     ok.textContent='맞은 단어 '+score+'개';
     wrongs.forEach(w=>{
-      const enB='<b class="eng">'+w.en+'</b>';
       const div=document.createElement('div');
       div.className='ritem';
       div.innerHTML =
-        '<div class="q">'+enB+' &nbsp;—&nbsp; '+w.ko+'</div>'+
-        '<div class="ans"><span class="yours">내 답: <s>'+w.chosen+'</s></span>'+
-        '<span class="right">정답: '+w.correct+'</span></div>';
+        '<div class="q">'+w.def+'</div>'+
+        '<div class="ans"><span class="yours">내 답: <s>'+(w.chosen||'(빈칸)')+'</s></span>'+
+        '<span class="right">정답: <b class="eng">'+w.en+'</b> <span class="ko">'+w.ko+'</span></span></div>';
       review.appendChild(div);
     });
   }
@@ -504,7 +434,7 @@ function finish(){
 
 function copyResult(){
   const total=queue.length, pct=Math.round(score/total*100);
-  let t='[EngFit 단어 테스트]\nLesson 4 (문성중 2학년 한승주)\n\n';
+  let t='[EngFit 단어 테스트]\nLesson 4 · 영영풀이 (문성중 2학년 한승주)\n\n';
   t+='점수: '+score+'/'+total+' ('+pct+'%)\n';
   t+='날짜: '+new Date().toLocaleDateString('ko-KR')+'\n';
   if(wrongs.length===0){
@@ -533,6 +463,7 @@ function showToast(msg){
 }
 function restart(){ show('start'); }
 </script>
-<!-- Lesson 4 · 문성중 2학년 한승주 · 블루 구겨진 종이 배경(#5) · keyboard 1-4 + typing(Enter, case-insensitive) · 동의어 복수정답 처리 -->
+<!-- Lesson 4 · 문성중 2학년 한승주 · 영영풀이→영어 주관식 100% · 블루 구겨진 종이 배경(#5) · Enter 제출 + 첫글자 힌트 + 대소문자 무시 -->
 </body>
 </html>
+                                                                                                                                                                                                
